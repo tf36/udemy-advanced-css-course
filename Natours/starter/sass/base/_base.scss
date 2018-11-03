@@ -1,0 +1,40 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+// set root font size to use rem values
+// use percentage of browser default font-size (16px if user has not changed it)[also allows us to respect the user's change to browser font-size]
+html {
+  font-size: 62.5%; /* .625 * 16px = 10px */
+
+  // order matters here as they will stack; last one gets preference
+  @include respond(big-desk) {
+    font-size: 75%;    // 1rem = 12px, 12px/16px, 75%
+  }
+
+  @include respond(tab-land) {
+    font-size: 56.25%;     // 1rem = 9px, 9px/16px, 56.25%
+  }
+
+  @include respond(tab-port) {
+    font-size: 50%;     // 1rem = 8px, 8px/16px, 50%
+  }
+}
+
+body {
+  box-sizing: border-box;
+  padding: 3rem;
+
+  @include respond(tab-port) {
+    padding: 0;
+  }
+}
+
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}
